@@ -72,7 +72,7 @@ public class MySQL extends Driver {
                             puuid VARCHAR(78) NOT NULL,
                             profileIconId INT NOT NULL,
                             summonerLevel INT NOT NULL,
-                            FOREIGN KEY (puuid) REFERENCES Accounts(puuid)
+                            FOREIGN KEY (puuid) REFERENCES RiotAccounts(puuid)
                             )
                             """
             ).execute();
