@@ -38,7 +38,7 @@ public enum Region {
         return String.format("https://%s.api.riotgames.com", region);
     }
 
-    public static Region getCluster(String region) {
+    public static Region getRegion(String region) {
         if (region == null || region.isBlank()) throw new IllegalArgumentException("Region cannot be null or empty.");
         for (Region r : values()) if (r.getRegion().equalsIgnoreCase(region)) return r;
         return null;

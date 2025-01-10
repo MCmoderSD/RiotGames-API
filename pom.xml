@@ -6,7 +6,7 @@
 
     <groupId>de.MCmoderSD</groupId>
     <artifactId>riot-api</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>Riot Games API</name>
     <description>A simple API to retrieve information about a League of Legends player using the Riot Games API</description>

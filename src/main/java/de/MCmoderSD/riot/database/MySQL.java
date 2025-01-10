@@ -55,7 +55,7 @@ public class MySQL extends Driver {
             // SQL statement for creating the Accounts table
             connection.prepareStatement(condition +
                     """
-                            Accounts (
+                            RiotAccounts (
                             puuid VARCHAR(78) PRIMARY KEY,
                             gameName VARCHAR(16) NOT NULL,
                             TagLine VARCHAR(5) NOT NULL
@@ -106,7 +106,7 @@ public class MySQL extends Driver {
             if (getAccount(gameName, tagLine) != null) return;
 
             // SQL statement for inserting a new account
-            String query = "INSERT INTO Accounts (puuid, gameName, tagLine) VALUES (?, ?, ?)";
+            String query = "INSERT INTO RiotAccounts (puuid, gameName, tagLine) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.setString(1, puuid);
             preparedStatement.setString(2, gameName);
@@ -203,7 +203,7 @@ public class MySQL extends Driver {
         try {
             if (!isConnected()) connect();
 
-            String query = "SELECT * FROM Accounts WHERE gameName = ? AND tagLine = ?";
+            String query = "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.setString(1, gameName);
             preparedStatement.setString(2, tagLine);
@@ -229,7 +229,7 @@ public class MySQL extends Driver {
         try {
             if (!isConnected()) connect();
 
-            String query = "SELECT * FROM Accounts WHERE gameName = ? AND tagLine = ?";
+            String query = "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?";
             PreparedStatement preparedStatement = getConnection().prepareStatement(query);
             preparedStatement.setString(1, gameName);
             preparedStatement.setString(2, tagLine);
