@@ -17,6 +17,9 @@ import de.MCmoderSD.riot.objects.Account;
 import de.MCmoderSD.riot.objects.Entry;
 import de.MCmoderSD.riot.objects.Summoner;
 
+/**
+ * The RiotAPI class provides methods to interact with the Riot Games API and manage data in a MySQL database.
+ */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class RiotAPI {
 
@@ -34,6 +37,13 @@ public class RiotAPI {
     private final HttpClient httpClient;
     private final ObjectMapper mapper;
 
+    /**
+     * Constructs a new RiotAPI instance with the specified API key, cluster, and database configuration.
+     *
+     * @param apiKey         the API key for accessing the Riot Games API
+     * @param cluster        the cluster to use for API requests
+     * @param databaseConfig the database configuration as a JsonNode
+     */
     public RiotAPI(String apiKey, Cluster cluster, JsonNode databaseConfig) {
 
         // Init Associations
@@ -48,6 +58,17 @@ public class RiotAPI {
         mapper = new ObjectMapper();
     }
 
+    /**
+     * Constructs a new RiotAPI instance with the specified API key, cluster, and database connection details.
+     *
+     * @param apiKey   the API key for accessing the Riot Games API
+     * @param cluster  the cluster to use for API requests
+     * @param host     the database host
+     * @param port     the database port
+     * @param database the database name
+     * @param username the database username
+     * @param password the database password
+     */
     public RiotAPI(String apiKey, Cluster cluster, String host, int port, String database, String username, String password) {
 
         // Init Associations
@@ -62,6 +83,15 @@ public class RiotAPI {
         mapper = new ObjectMapper();
     }
 
+    /**
+     * Checks the validity of the provided parameters.
+     *
+     * @param name   the name to check
+     * @param tag    the tag to check
+     * @param region the region to check
+     * @return true if the parameters are valid, otherwise throws an exception
+     * @throws InvalidParameterException if any parameter is invalid
+     */
     public static boolean checkParameters(String name, String tag, Region region) {
         if (name == null || tag == null) throw new InvalidParameterException("Name and Tag must not be null");
         if (name.isEmpty() || tag.isEmpty() || name.isBlank() || tag.isBlank()) throw new InvalidParameterException("Name and Tag must not be empty");
@@ -71,6 +101,14 @@ public class RiotAPI {
         return true;
     }
 
+    /**
+     * Retrieves a Summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the Summoner object, or null if not found
+     */
     public Summoner getSummoner(String name, String tag, Region region) {
         try {
 
@@ -92,6 +130,14 @@ public class RiotAPI {
         }
     }
 
+    /**
+     * Retrieves the profile icon ID of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the profile icon ID, or null if not found
+     */
     public Integer getProfileIconId(String name, String tag, Region region) {
         try {
 
@@ -112,6 +158,14 @@ public class RiotAPI {
         }
     }
 
+    /**
+     * Retrieves the summoner level of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the summoner level, or null if not found
+     */
     public Integer getSummonerLevel(String name, String tag, Region region) {
         try {
 
@@ -132,6 +186,14 @@ public class RiotAPI {
         }
     }
 
+    /**
+     * Retrieves the entry of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the Entry object, or null if not found
+     */
     public Entry getEntry(String name, String tag, Region region) {
         try {
 
@@ -144,6 +206,14 @@ public class RiotAPI {
         }
     }
 
+    /**
+     * Retrieves the tier of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the Tier object, or null if not found
+     */
     public Tier getTier(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -154,6 +224,14 @@ public class RiotAPI {
         else return Tier.getTier(entry.getTier());
     }
 
+    /**
+     * Retrieves the rank of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the rank as a String, or null if not found
+     */
     public String getRank(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -164,6 +242,14 @@ public class RiotAPI {
         else return getTier(name, tag, region).getName() + " " + entry.getRank();
     }
 
+    /**
+     * Retrieves the league points of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the league points, or 0 if not found
+     */
     public int getLeaguePoints(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -174,6 +260,14 @@ public class RiotAPI {
         else return entry.getLeaguePoints();
     }
 
+    /**
+     * Retrieves the number of wins of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the number of wins, or 0 if not found
+     */
     public int getWins(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -184,6 +278,14 @@ public class RiotAPI {
         else return entry.getWins();
     }
 
+    /**
+     * Retrieves the number of losses of a summoner by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return the number of losses, or 0 if not found
+     */
     public int getLosses(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -194,6 +296,14 @@ public class RiotAPI {
         else return entry.getLosses();
     }
 
+    /**
+     * Checks if a summoner is a veteran by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return true if the summoner is a veteran, otherwise false
+     */
     public boolean isVeteran(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -204,6 +314,14 @@ public class RiotAPI {
         else return entry.isVeteran();
     }
 
+    /**
+     * Checks if a summoner is inactive by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return true if the summoner is inactive, otherwise false
+     */
     public boolean isInactive(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -214,6 +332,14 @@ public class RiotAPI {
         else return entry.isInactive();
     }
 
+    /**
+     * Checks if a summoner is fresh blood by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return true if the summoner is fresh blood, otherwise false
+     */
     public boolean isFreshBlood(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -224,6 +350,14 @@ public class RiotAPI {
         else return entry.isFreshBlood();
     }
 
+    /**
+     * Checks if a summoner is on a hot streak by name, tag, and region.
+     *
+     * @param name   the name of the summoner
+     * @param tag    the tag of the summoner
+     * @param region the region of the summoner
+     * @return true if the summoner is on a hot streak, otherwise false
+     */
     public boolean isHotStreak(String name, String tag, Region region) {
 
         // Fetch the entry
@@ -234,6 +368,16 @@ public class RiotAPI {
         else return entry.isHotStreak();
     }
 
+    /**
+     * Retrieves an Account by game name and tag line.
+     *
+     * @param gameName the game name of the account
+     * @param tagLine  the tag line of the account
+     * @return the Account object
+     * @throws IOException              if an I/O error occurs
+     * @throws InterruptedException     if the operation is interrupted
+     * @throws InvalidParameterException if any parameter is invalid
+     */
     public Account getAccount(String gameName, String tagLine) throws IOException, InterruptedException {
 
         // Check Parameters
@@ -262,6 +406,16 @@ public class RiotAPI {
         return account;
     }
 
+    /**
+     * Retrieves a Summoner by account and region.
+     *
+     * @param account the account of the summoner
+     * @param region  the region of the summoner
+     * @return the Summoner object
+     * @throws IOException              if an I/O error occurs
+     * @throws InterruptedException     if the operation is interrupted
+     * @throws InvalidParameterException if any parameter is invalid
+     */
     public Summoner getSummoner(Account account, Region region) throws IOException, InterruptedException {
 
         // Check Parameters
@@ -284,6 +438,16 @@ public class RiotAPI {
         return summoner;
     }
 
+    /**
+     * Retrieves an Entry by summoner and region.
+     *
+     * @param summoner the summoner of the entry
+     * @param region   the region of the entry
+     * @return the Entry object, or null if not found
+     * @throws IOException              if an I/O error occurs
+     * @throws InterruptedException     if the operation is interrupted
+     * @throws InvalidParameterException if any parameter is invalid
+     */
     public Entry getEntry(Summoner summoner, Region region) throws IOException, InterruptedException {
 
         // Check Parameters

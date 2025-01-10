@@ -8,9 +8,17 @@ import de.MCmoderSD.riot.objects.Summoner;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * This class handles the MySQL database operations for the Riot API.
+ */
 @SuppressWarnings("unused")
 public class MySQL extends Driver {
 
+    /**
+     * Constructs a MySQL object with the given JSON configuration.
+     *
+     * @param jsonNode the JSON configuration
+     */
     public MySQL(JsonNode jsonNode) {
         super(jsonNode);
 
@@ -18,6 +26,15 @@ public class MySQL extends Driver {
         initTables();
     }
 
+    /**
+     * Constructs a MySQL object with the given database connection parameters.
+     *
+     * @param host     the database host
+     * @param port     the database port
+     * @param database the database name
+     * @param username the database username
+     * @param password the database password
+     */
     public MySQL(String host, int port, String database, String username, String password) {
         super(host, port, database, username, password);
 
@@ -25,6 +42,9 @@ public class MySQL extends Driver {
         initTables();
     }
 
+    /**
+     * Initializes the database tables if they do not already exist.
+     */
     private void initTables() {
         try {
             if (!isConnected()) connect();
@@ -62,11 +82,22 @@ public class MySQL extends Driver {
         }
     }
 
+    /**
+     * Adds an account to the database.
+     *
+     * @param account the account to add
+     */
     public void addAccount(Account account) {
         addAccount(account.getPUUID(), account.getGameName(), account.getTagLine());
     }
 
-    // Add Account
+    /**
+     * Adds an account to the database with the given parameters.
+     *
+     * @param puuid    the PUUID of the account
+     * @param gameName the game name of the account
+     * @param tagLine  the tag line of the account
+     */
     public void addAccount(String puuid, String gameName, String tagLine) {
         try {
             if (!isConnected()) connect();
@@ -88,11 +119,24 @@ public class MySQL extends Driver {
         }
     }
 
+    /**
+     * Adds a summoner to the database.
+     *
+     * @param summoner the summoner to add
+     */
     public void addSummoner(Summoner summoner) {
         addSummoner(summoner.getSummonerId(), summoner.getAccountId(), summoner.getPuuid(), summoner.getProfileIconId(), summoner.getSummonerLevel());
     }
 
-    // Add Summoner
+    /**
+     * Adds a summoner to the database with the given parameters.
+     *
+     * @param summonerId    the summoner ID
+     * @param accountId     the account ID
+     * @param puuid         the PUUID of the summoner
+     * @param profileIconId the profile icon ID of the summoner
+     * @param summonerLevel the summoner level
+     */
     public void addSummoner(String summonerId, String accountId, String puuid, int profileIconId, int summonerLevel) {
         try {
             if (!isConnected()) connect();
@@ -116,6 +160,12 @@ public class MySQL extends Driver {
         }
     }
 
+    /**
+     * Retrieves a summoner from the database by PUUID.
+     *
+     * @param puuid the PUUID of the summoner
+     * @return the Summoner object, or null if not found
+     */
     public Summoner getSummoner(String puuid) {
         try {
             if (!isConnected()) connect();
@@ -142,6 +192,13 @@ public class MySQL extends Driver {
         return null;
     }
 
+    /**
+     * Retrieves a summoner from the database by game name and tag line.
+     *
+     * @param gameName the game name of the summoner
+     * @param tagLine  the tag line of the summoner
+     * @return the Summoner object, or null if not found
+     */
     public Summoner getSummoner(String gameName, String tagLine) {
         try {
             if (!isConnected()) connect();
@@ -161,6 +218,13 @@ public class MySQL extends Driver {
         return null;
     }
 
+    /**
+     * Retrieves an account from the database by game name and tag line.
+     *
+     * @param gameName the game name of the account
+     * @param tagLine  the tag line of the account
+     * @return the Account object, or null if not found
+     */
     public Account getAccount(String gameName, String tagLine) {
         try {
             if (!isConnected()) connect();

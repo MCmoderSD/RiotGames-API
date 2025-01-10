@@ -13,9 +13,9 @@
 
     <distributionManagement>
         <repository>
-            <id>HTTPS-Server</id>
+            <id>RiotGames-API</id>
             <name>GitHub MCmoderSD Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/MCmoderSD/HTTPS-Server</url>
+            <url>https://maven.pkg.github.com/MCmoderSD/RiotGames-API</url>
         </repository>
     </distributionManagement>
 
