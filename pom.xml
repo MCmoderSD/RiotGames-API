@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.MCmoderSD</groupId>
+    <artifactId>riot-api</artifactId>
+    <version>1.0.0</version>
+
+    <name>Riot Games API</name>
+    <description>A simple API to retrieve information about a League of Legends player using the Riot Games API</description>
+
+    <distributionManagement>
+        <repository>
+            <id>HTTPS-Server</id>
+            <name>GitHub MCmoderSD Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/MCmoderSD/HTTPS-Server</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+         <!-- JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.18.2</version>
+        </dependency>
+
+        <!-- MySQL -->
+        <dependency>
+            <groupId>com.github.MCmoderSD</groupId>
+            <artifactId>MySQL-Driver</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version> <!-- don't change this -->
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
