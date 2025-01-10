@@ -37,4 +37,15 @@ public enum Region {
     public String getUrl() {
         return String.format("https://%s.api.riotgames.com", region);
     }
+
+    public static Region getCluster(String region) {
+        if (region == null || region.isBlank()) throw new IllegalArgumentException("Region cannot be null or empty.");
+        for (Region r : values()) if (r.getRegion().equalsIgnoreCase(region)) return r;
+        return null;
+    }
+
+    public static String[] getRegions() {
+        String regions = "BR1, EUN1, EUW1, JP1, KR, LA1, LA2, NA1, OC1, TR1, RU, PH2, SG2, TH2, TW2, VN2";
+        return regions.split(", ");
+    }
 }
