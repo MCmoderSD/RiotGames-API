@@ -1,6 +1,7 @@
 import de.MCmoderSD.riot.core.RiotAPI;
 import de.MCmoderSD.riot.enums.Cluster;
 import de.MCmoderSD.riot.enums.Region;
+import de.MCmoderSD.sql.Driver;
 
 public class Main {
 
@@ -8,13 +9,14 @@ public class Main {
 
         // API
         RiotAPI api = new RiotAPI(
-                "API_KEY",          // API Key
-                Cluster.EUROPE,     // Cluster
-                "localhost",        // Domain
-                3306,               // Port
-                "RiotGames",        // Database
-                "YourUser",         // User
-                "YourPassword");    // Password
+                "API_KEY",                  // API Key
+                Cluster.EUROPE,             // Cluster
+                Driver.DatabaseType.MYSQL,  // Database Type
+                "localhost",                // Domain
+                3306,                       // Port
+                "RiotGames",                // Database
+                "YourUser",                 // User
+                "YourPassword");            // Password
 
         // Example
         String name = "NattyNatt";      // Summoner Name

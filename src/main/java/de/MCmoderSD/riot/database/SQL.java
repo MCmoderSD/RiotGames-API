@@ -1,7 +1,7 @@
 package de.MCmoderSD.riot.database;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import de.MCmoderSD.mysql.Driver;
+import de.MCmoderSD.sql.Driver;
 import de.MCmoderSD.riot.objects.Account;
 import de.MCmoderSD.riot.objects.Summoner;
 
@@ -9,34 +9,36 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * This class handles the MySQL database operations for the Riot API.
+ * This class handles the SQL database operations for the Riot API.
  */
 @SuppressWarnings("unused")
-public class MySQL extends Driver {
+public class SQL extends Driver {
 
     /**
-     * Constructs a MySQL object with the given JSON configuration.
+     * Constructs a SQL object with the given JSON configuration.
      *
+     * @param databaseType the database type
      * @param jsonNode the JSON configuration
      */
-    public MySQL(JsonNode jsonNode) {
-        super(jsonNode);
+    public SQL(DatabaseType databaseType, JsonNode jsonNode) {
+        super(databaseType, jsonNode);
 
         // Init tables
         initTables();
     }
 
     /**
-     * Constructs a MySQL object with the given database connection parameters.
+     * Constructs a SQL object with the given database connection parameters.
      *
+     * @param databaseType the database type
      * @param host     the database host
      * @param port     the database port
      * @param database the database name
      * @param username the database username
      * @param password the database password
      */
-    public MySQL(String host, int port, String database, String username, String password) {
-        super(host, port, database, username, password);
+    public SQL(DatabaseType databaseType, String host, int port, String database, String username, String password) {
+        super(databaseType, host, port, database, username, password);
 
         // Init tables
         initTables();

@@ -9,16 +9,17 @@ import java.security.InvalidParameterException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.MCmoderSD.riot.database.MySQL;
+import de.MCmoderSD.riot.database.SQL;
 import de.MCmoderSD.riot.enums.Cluster;
 import de.MCmoderSD.riot.enums.Region;
 import de.MCmoderSD.riot.enums.Tier;
 import de.MCmoderSD.riot.objects.Account;
 import de.MCmoderSD.riot.objects.Entry;
 import de.MCmoderSD.riot.objects.Summoner;
+import de.MCmoderSD.sql.Driver;
 
 /**
- * The RiotAPI class provides methods to interact with the Riot Games API and manage data in a MySQL database.
+ * The RiotAPI class provides methods to interact with the Riot Games API and manage data in a SQL database.
  */
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class RiotAPI {
@@ -29,7 +30,7 @@ public class RiotAPI {
     private static final String GET_ENTRIES = "/lol/league/v4/entries/by-summoner/";
 
     // Associations
-    private final MySQL mySQL;
+    private final SQL sql;
 
     // Attributes
     private final String apiKey;
@@ -42,12 +43,13 @@ public class RiotAPI {
      *
      * @param apiKey         the API key for accessing the Riot Games API
      * @param cluster        the cluster to use for API requests
+     * @param databaseType   the database type
      * @param databaseConfig the database configuration as a JsonNode
      */
-    public RiotAPI(String apiKey, Cluster cluster, JsonNode databaseConfig) {
+    public RiotAPI(String apiKey, Cluster cluster, Driver.DatabaseType databaseType, JsonNode databaseConfig) {
 
         // Init Associations
-        mySQL = new MySQL(databaseConfig);
+        sql = new SQL(databaseType, databaseConfig);
 
         // Init Attributes
         this.apiKey = apiKey;
@@ -63,16 +65,17 @@ public class RiotAPI {
      *
      * @param apiKey   the API key for accessing the Riot Games API
      * @param cluster  the cluster to use for API requests
+     * @param databaseType the database type
      * @param host     the database host
      * @param port     the database port
      * @param database the database name
      * @param username the database username
      * @param password the database password
      */
-    public RiotAPI(String apiKey, Cluster cluster, String host, int port, String database, String username, String password) {
+    public RiotAPI(String apiKey, Cluster cluster, Driver.DatabaseType databaseType, String host, int port, String database, String username, String password) {
 
         // Init Associations
-        mySQL = new MySQL(host, port, database, username, password);
+        sql = new SQL(databaseType, host, port, database, username, password);
 
         // Init Attributes
         this.apiKey = apiKey;
@@ -116,7 +119,7 @@ public class RiotAPI {
             checkParameters(name, tag, region);
 
             // Try to get the summoner from the database
-            Summoner summoner = mySQL.getSummoner(name, tag);
+            Summoner summoner = sql.getSummoner(name, tag);
 
             // Check if the summoner is null
             if (summoner != null) return summoner;
@@ -145,7 +148,7 @@ public class RiotAPI {
             checkParameters(name, tag, region);
 
             // Try to get the account from the database
-            Account account = mySQL.getAccount(name, tag);
+            Account account = sql.getAccount(name, tag);
             if (account == null) account = getAccount(name, tag);
 
             // Check if the account is null
@@ -173,7 +176,7 @@ public class RiotAPI {
             checkParameters(name, tag, region);
 
             // Try to get the account from the database
-            Account account = mySQL.getAccount(name, tag);
+            Account account = sql.getAccount(name, tag);
             if (account == null) account = getAccount(name, tag);
 
             // Check if the account is null
@@ -402,7 +405,7 @@ public class RiotAPI {
 
         // Parse and check JSON
         Account account = new Account(mapper.readTree(response.body()));
-        mySQL.addAccount(account);
+        sql.addAccount(account);
         return account;
     }
 
@@ -434,7 +437,7 @@ public class RiotAPI {
 
         // Parse and check JSON
         Summoner summoner = new Summoner(mapper.readTree(response.body()));
-        mySQL.addSummoner(summoner);
+        sql.addSummoner(summoner);
         return summoner;
     }
 
