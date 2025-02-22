@@ -9,14 +9,14 @@ public class Main {
 
         // API
         RiotAPI api = new RiotAPI(
-                "API_KEY",                  // API Key
-                Cluster.EUROPE,             // Cluster
-                Driver.DatabaseType.MYSQL,  // Database Type
-                "localhost",                // Domain
-                3306,                       // Port
-                "RiotGames",                // Database
-                "YourUser",                 // User
-                "YourPassword");            // Password
+                "API_KEY",                      // API Key
+                Cluster.EUROPE,                 // Cluster
+                Driver.DatabaseType.MARIADB,    // Database Type
+                "localhost",                    // Domain
+                3306,                           // Port
+                "RiotGames",                    // Database
+                "YourUser",                     // User
+                "YourPassword");                // Password
 
         // Example
         String name = "NattyNatt";      // Summoner Name

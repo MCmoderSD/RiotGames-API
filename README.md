@@ -18,7 +18,7 @@ Currently, the following information can be retrieved:
 - Hot Streak Status
 
 ## Configuration
-You need a MySQL database to store the retrieved information. <br>
+You need a MariaDB database to store the retrieved information. <br>
 Create a JSON file with the following structure to configure the database connection:
 ```json
 {
@@ -67,14 +67,14 @@ public class Main {
 
         // API
         RiotAPI api = new RiotAPI(
-                "API_KEY",                  // API Key
-                Cluster.EUROPE,             // Cluster
-                Driver.DatabaseType.MYSQL,  // Database Type
-                "localhost",                // Domain
-                3306,                       // Port
-                "RiotGames",                // Database
-                "YourUser",                 // User
-                "YourPassword");            // Password
+                "API_KEY",                      // API Key
+                Cluster.EUROPE,                 // Cluster
+                Driver.DatabaseType.MARIADB,    // Database Type
+                "localhost",                    // Domain
+                3306,                           // Port
+                "RiotGames",                    // Database
+                "YourUser",                     // User
+                "YourPassword");                // Password
 
         // Example
         String name = "NattyNatt";      // Summoner Name
