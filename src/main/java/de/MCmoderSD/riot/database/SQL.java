@@ -56,18 +56,18 @@ public class SQL extends Driver {
 
             // SQL statement for creating the Accounts table
             connection.prepareStatement(condition +
-                    """
+                            """
                             RiotAccounts (
                             puuid VARCHAR(78) PRIMARY KEY,
                             gameName VARCHAR(16) NOT NULL,
                             TagLine VARCHAR(5) NOT NULL
-                            )
+                            ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=utf8mb4
                             """
             ).execute();
 
             // SQL statement for creating the Summoners table
             connection.prepareStatement(condition +
-                    """
+                            """
                             Summoners (
                             summonerId VARCHAR(63) PRIMARY KEY,
                             accountId VARCHAR(56) NOT NULL,
@@ -75,7 +75,7 @@ public class SQL extends Driver {
                             profileIconId INT NOT NULL,
                             summonerLevel INT NOT NULL,
                             FOREIGN KEY (puuid) REFERENCES RiotAccounts(puuid)
-                            )
+                            ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=utf8mb4
                             """
             ).execute();
 
@@ -108,8 +108,11 @@ public class SQL extends Driver {
             if (getAccount(gameName, tagLine) != null) return;
 
             // SQL statement for inserting a new account
-            String query = "INSERT INTO RiotAccounts (puuid, gameName, tagLine) VALUES (?, ?, ?)";
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            PreparedStatement preparedStatement = getConnection().prepareStatement(
+                    "INSERT INTO RiotAccounts (puuid, gameName, tagLine) VALUES (?, ?, ?)"
+            );
+
+            // Set parameters
             preparedStatement.setString(1, puuid);
             preparedStatement.setString(2, gameName);
             preparedStatement.setString(3, tagLine);
@@ -147,8 +150,11 @@ public class SQL extends Driver {
             if (getSummoner(puuid) != null) return;
 
             // SQL statement for inserting a new summoner
-            String query = "INSERT INTO Summoners (summonerId, accountId, puuid, profileIconId, summonerLevel) VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            PreparedStatement preparedStatement = getConnection().prepareStatement(
+                    "INSERT INTO Summoners (summonerId, accountId, puuid, profileIconId, summonerLevel) VALUES (?, ?, ?, ?, ?)"
+            );
+
+            // Set parameters
             preparedStatement.setString(1, summonerId);
             preparedStatement.setString(2, accountId);
             preparedStatement.setString(3, puuid);
@@ -172,8 +178,12 @@ public class SQL extends Driver {
         try {
             if (!isConnected()) connect();
 
-            String query = "SELECT * FROM Summoners WHERE puuid = ?";
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            // Prepare statement
+            PreparedStatement preparedStatement = getConnection().prepareStatement(
+                    "SELECT * FROM Summoners WHERE puuid = ?"
+            );
+
+            // Set parameters
             preparedStatement.setString(1, puuid);
             var resultSet = preparedStatement.executeQuery();
 
@@ -205,8 +215,12 @@ public class SQL extends Driver {
         try {
             if (!isConnected()) connect();
 
-            String query = "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?";
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            // Prepare statement
+            PreparedStatement preparedStatement = getConnection().prepareStatement(
+                    "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?"
+            );
+
+            // Set parameters
             preparedStatement.setString(1, gameName);
             preparedStatement.setString(2, tagLine);
             var resultSet = preparedStatement.executeQuery();
@@ -231,8 +245,12 @@ public class SQL extends Driver {
         try {
             if (!isConnected()) connect();
 
-            String query = "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?";
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            // Prepare statement
+            PreparedStatement preparedStatement = getConnection().prepareStatement(
+                    "SELECT * FROM RiotAccounts WHERE gameName = ? AND tagLine = ?"
+            );
+
+            // Set parameters
             preparedStatement.setString(1, gameName);
             preparedStatement.setString(2, tagLine);
             var resultSet = preparedStatement.executeQuery();

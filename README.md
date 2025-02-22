@@ -50,7 +50,7 @@ Add the dependency to your `pom.xml` file:
 <dependency>
     <groupId>com.github.MCmoderSD</groupId>
     <artifactId>RiotGames-API</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
