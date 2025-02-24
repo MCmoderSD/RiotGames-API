@@ -127,7 +127,7 @@ jobs:
           echo "md5=$MD5" >> $GITHUB_ENV
           echo "sha1=$SHA1" >> $GITHUB_ENV
           echo "sha256=$SHA256" >> $GITHUB_ENV
-          echo "file=$FILE" >> $GITHUB_ENV        
+          echo "file=$FILE" >> $GITHUB_ENV
 
       - name: Create new release
         uses: softprops/action-gh-release@v2

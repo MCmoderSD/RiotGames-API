@@ -58,7 +58,7 @@ public class SQL extends Driver {
             connection.prepareStatement(condition +
                             """
                             RiotAccounts (
-                            puuid VARCHAR(78) PRIMARY KEY,
+                            puuid VARCHAR(78) CHARACTER SET ascii PRIMARY KEY PRIMARY KEY,
                             gameName VARCHAR(16) NOT NULL,
                             TagLine VARCHAR(5) NOT NULL
                             ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=utf8mb4
@@ -75,7 +75,7 @@ public class SQL extends Driver {
                             profileIconId INT NOT NULL,
                             summonerLevel INT NOT NULL,
                             FOREIGN KEY (puuid) REFERENCES RiotAccounts(puuid)
-                            ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=utf8mb4
+                            ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=ascii
                             """
             ).execute();
 
