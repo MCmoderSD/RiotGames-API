@@ -1,0 +1,12 @@
+jdk:
+  - zulu@21
+
+before_install:
+  - sdk install java 21.40.17-zulu
+  - sdk use java 21.40.17-zulu
+
+install:
+  - mvn -B install -DskipTests --no-transfer-progress -U -C
+
+build:
+  - mvn -B package -DskipTests --no-transfer-progress -U -C
