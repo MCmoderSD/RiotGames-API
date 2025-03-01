@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.MCmoderSD</groupId>
-    <artifactId>riot-api</artifactId>
+    <artifactId>RiotGames-API</artifactId>
     <version>1.1.5</version>
 
     <name>Riot Games API</name>
@@ -13,9 +13,9 @@
 
     <distributionManagement>
         <repository>
-            <id>RiotGames-API</id>
-            <name>GitHub MCmoderSD Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/MCmoderSD/RiotGames-API</url>
+            <id>Nexus</id>
+            <name>Nexus Repository</name>
+            <url>https://dev.mcmodersd.de/nexus/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 

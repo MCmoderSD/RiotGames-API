@@ -1,5 +1,4 @@
 # RiotGames-API
-[![](https://jitpack.io/v/MCmoderSD/RiotGames-API.svg)](https://jitpack.io/#MCmoderSD/RiotGames-API)
 
 ## Description
 A simple API to retrieve information about a League of Legends player using the Riot Games API.
@@ -36,19 +35,19 @@ You can get one [here](https://developer.riotgames.com/).
 ## Usage
 
 ### Maven
-Make sure you have the JitPack repository added to your `pom.xml` file:
+Make sure you have the repository added to your `pom.xml` file:
 ```xml
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>MCmoderSD.de</id>
+        <url>https://dev.mcmodersd.de/nexus/repository/maven-releases/</url>
     </repository>
 </repositories>
 ```
 Add the dependency to your `pom.xml` file:
 ```xml
 <dependency>
-    <groupId>com.github.MCmoderSD</groupId>
+    <groupId>de.MCmoderSD</groupId>
     <artifactId>RiotGames-API</artifactId>
     <version>1.1.5</version>
 </dependency>
