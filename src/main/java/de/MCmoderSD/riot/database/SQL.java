@@ -60,7 +60,7 @@ public class SQL extends Driver {
                             RiotAccounts (
                             puuid VARCHAR(78) CHARACTER SET ascii PRIMARY KEY PRIMARY KEY,
                             gameName VARCHAR(16) NOT NULL,
-                            TagLine VARCHAR(5) NOT NULL
+                            tagLine VARCHAR(5) NOT NULL
                             ) ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=1 CHARSET=utf8mb4
                             """
             ).execute();

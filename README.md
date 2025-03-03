@@ -35,12 +35,13 @@ You can get one [here](https://developer.riotgames.com/).
 ## Usage
 
 ### Maven
-Make sure you have the repository added to your `pom.xml` file:
+Make sure you have my Sonatype Nexus OSS repository added to your `pom.xml` file:
 ```xml
 <repositories>
     <repository>
-        <id>MCmoderSD.de</id>
-        <url>https://dev.mcmodersd.de/nexus/repository/maven-releases/</url>
+        <id>Nexus</id>
+        <name>Sonatype Nexus</name>
+        <url>https://mcmodersd.de/nexus/repository/maven-releases/</url>
     </repository>
 </repositories>
 ```
@@ -49,7 +50,7 @@ Add the dependency to your `pom.xml` file:
 <dependency>
     <groupId>de.MCmoderSD</groupId>
     <artifactId>RiotGames-API</artifactId>
-    <version>1.1.5</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
