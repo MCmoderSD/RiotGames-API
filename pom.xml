@@ -14,8 +14,8 @@
     <distributionManagement>
         <repository>
             <id>Nexus</id>
-            <name>Nexus Repository</name>
-            <url>https://dev.mcmodersd.de/nexus/repository/maven-releases/</url>
+            <name>Sonatype Nexus</name>
+            <url>https://mcmodersd.de/nexus/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
